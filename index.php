@@ -14,6 +14,10 @@
 
 <div id="login">
 	<form>
+		<!--search user database for email, fail if no match-->
+		<!--compare passwords, fail if not identical-->
+		<!--apply cookies for user id-->
+		<!--go to profileHome-->
 		<h3>Login</h3>
 		<p>Email</p>
 		<input type="text" name="username" required>
@@ -25,6 +29,8 @@
 
 <div id="createAccount">
 	<form>
+		<!--create email/password entry in user database-->
+		<!--send email-->
 		<h3>Create Account</h3>
 		<p>Email</p>
 		<input type="text" name="username" required>
@@ -36,6 +42,9 @@
 
 <div id="forgotPassword">
 	<form>
+		<!--search user database for email-->
+		<!--change password to some random password-->
+		<!--send email with new random password-->
 		<h3>Forgot Password</h3>
 		<p>Email</p>
 		<input type="text" name="email" required>

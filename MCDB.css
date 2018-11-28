@@ -61,6 +61,31 @@ h2{
 	color: white;
 	border: 3px solid dodgerblue;
 	font-family: monospace;
+	display: block;
+	margin-right: auto;
+	margin-left: auto;
+}
+.searchbtn{
+	background-color: dodgerblue;
+	width: auto;
+	height: 25px;
+	margin-top: 2em;
+	color: white;
+	border: 3px solid dodgerblue;
+	font-family: monospace;
+}
+.backHome{
+	background-color: dodgerblue;
+	width: auto;
+	height: 25px;
+	margin-top: 2em;
+	color: white;
+	border: 3px solid dodgerblue;
+	font-family: monospace;
+	display: inline-block;
+	margin-bottom: 2em;
+	margin-top: 0;
+	float: right;
 }
 #signedIn{
 	margin-top: 1em;
@@ -87,4 +112,69 @@ h2{
 	height:auto;
 	font-weight: bolder;
 	font-size: 3em;
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+th, td {
+    text-align: left;
+    padding: 8px;
+}
+
+tr:nth-child(even){
+	background-color: lightgrey;
+	color: blue;
+}
+
+th {
+    background-color: dodgerblue;
+    color: white;
+}
+
+.courseTable {
+    
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 3em;
+    width: 80%;
+}
+.searchTable {
+    
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 3em;
+    width: 50%;
+    text-align: center;
+    
+}
+.searchHeader, .searchD {
+    text-align: center;
+    font-size: 1.5em;
+    padding: 8px;
+}
+.courseHeader, #courseTable>td {
+    text-align: left;
+    background-color: dodgerblue;
+    padding: 8px;
+}
+
+.courseRow:nth-child(even){
+	background-color: lightgrey;
+	color: black;
+	font-size: 1em;
+}
+
+.courseHeader {
+    background-color: dodgerblue;
+    border: 2px solid white;
+    color: white;
+    font-size: 2em;
+    width: 25%;
+}
+
+.course{
+	font-size: 2em;
 }

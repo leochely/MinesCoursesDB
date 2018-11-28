@@ -12,17 +12,27 @@
 	include 'templateheader.php'
 ?>
 
+<!--if user cookie is not correct, redirect to index.php-->
+
+<!--display user email-->
 <h3 id="signedIn">Signed in as: </h3>
+
+
 <div id="search">
-	<form>
+	<form action="./searchResults.php" method="post">
+		<!--go to searchResults.php with search and category in post-->
 		<input id="searchBar" type="text" name="search" placeholder="Search for Courses, Departments, or Faculty" required>
-		<input type="submit" value="Search Courses" class="btn">
-		<input type="submit" value="Search Departments" class="btn">
-		<input type="submit" value="Search Faculty" class="btn">
+		<!--only search course table-->
+		<input type="submit" name="category" value="Search Courses" class="searchbtn">
+		<!--only search department table-->
+		<input type="submit" name="category" value="Search Departments" class="searchbtn">
+		<!--only search faculty table-->
+		<input type="submit" name="category" value="Search Faculty" class="searchbtn">
 	</form>
 </div>
 <div id="viewMyReviews">
-	<button class="btn">View My Reviews</button>
+	<!--go to profileReviews.php-->
+	<button class="btn" onclick="window.location.href='./profileReviews.php'">View My Reviews</button>
 </div>
 </body>
 </html>

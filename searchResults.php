@@ -12,7 +12,45 @@
 	include 'templateheader.php'
 ?>
 
+<!--if user cookie is not correct, redirect to index.php-->
+
+<!--display user email-->
+
 <h3 id="signedIn">Signed in as: </h3>
+<button class="backHome" onclick="window.location.href='./profileHome.php'">Back to Home Page</button>
+<?php
+
+	$search = $_POST['search'];
+
+	if ($_POST['category'] == "Search Courses"){
+		//search course table for the search variable
+		echo "  <br><br>
+				<table class='searchTable'>
+				<tr><th class='searchHeader'>Results for (search variable) in Courses</th></tr>
+				<tr><td class='searchD'><a href='./coursePage.php'> example course</a></td></tr>
+
+			  </table>";
+	}
+	else if ($_POST['category'] == "Search Departments"){
+		//search department table for the search variable
+		echo "<br><br>
+				<table class='searchTable'>
+				<tr><th class='searchHeader'>Results for (search variable) in Departments</th></tr>
+				<tr><td class='searchD'><a href='./deptPage.php'> example department</a></td></tr>
+
+			  </table>";		
+	}
+	else if ($_POST['category'] == "Search Faculty"){
+		//search faculty table for the search variable
+		echo "<br><br>
+				<table class='searchTable'>
+				<tr><th class='searchHeader'>Results for (search variable) in Faculty</th></tr>
+				<tr><td class='searchD'><a href='./profPage.php'> example professor</a></td></tr>
+
+			  </table>";		
+	}
+?>
+
 
 </body>
 </html>

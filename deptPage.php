@@ -12,7 +12,38 @@
 	include 'templateheader.php'
 ?>
 
+<!--if user cookie is not correct, redirect to index.php-->
+
+<!--display user email-->
 <h3 id="signedIn">Signed in as: </h3>
+<button class="backHome" onclick="window.location.href='./profileHome.php'">Back to Home Page</button>
+
+<?php
+	//get department id from url and search table
+	echo "<br><br>
+
+		<table class='courseTable'>
+			<tr class='courseRow'>
+				<th class='courseHeader'>Department</th>
+				<td>xxxxxx</td>
+			</tr>
+			<tr class='courseRow'>
+				<th class='courseHeader'>Main Office</th>
+				<td>xxxxxx</td>
+			</tr>
+			<tr class='courseRow'>
+				<th class='courseHeader'>Faculty</th>
+				<td>xxxxxx</td>
+			</tr>
+			<tr class='courseRow'>
+				<th class='courseHeader'>Courses</th>
+				<td>xxxxxx</td>
+			</tr>
+			
+		</table>";
+		  
+?>
+
 
 </body>
 </html>
