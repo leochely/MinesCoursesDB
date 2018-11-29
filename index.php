@@ -13,7 +13,7 @@
 ?>
 
 <div id="login">
-	<form>
+	<form method='POST' action='passwordvalidation.php'>
 		<!--search user database for email, fail if no match-->
 		<!--compare passwords, fail if not identical-->
 		<!--apply cookies for user id-->
@@ -22,7 +22,7 @@
 		<p>Email</p>
 		<input type="text" name="username" required>
 		<p>Password</p>
-		<input type="text" name="password" required>
+		<input type="password" name="password" required>
 		<input type="submit" value="Submit" class="btn">
 	</form>
 </div>
@@ -35,7 +35,7 @@
 		<p>Email</p>
 		<input type="text" name="username" required>
 		<p>Password</p>
-		<input type="text" name="password" required>
+		<input type="password" name="password" required>
 		<input type="submit" value="Submit" class="btn">
 	</form>	
 </div>
