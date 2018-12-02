@@ -25,6 +25,7 @@
         while($row = $results->fetch_assoc()){
             if($password === $row['pass']){
                 $_SESSION['timeout'] = date("Y/m/d H:i:s", strtoTime("+30 minutes"));
+                $_SESSION['user'] = $email;
                 header('Location: /profileHome.php');
             } else {
                 header("location:javascript://history.go(-1)");

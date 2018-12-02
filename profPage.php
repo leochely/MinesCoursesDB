@@ -1,3 +1,9 @@
+<?php 
+	session_start(); 
+	if(date("Y/m/d H:i:s") > $_SESSION['timeout']){
+		header("location: /");
+	}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>

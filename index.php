@@ -28,7 +28,7 @@
 </div>
 
 <div id="createAccount">
-	<form>
+	<form method='POST' action='newuser.php'>
 		<!--create email/password entry in user database-->
 		<!--send email-->
 		<h3>Create Account</h3>
