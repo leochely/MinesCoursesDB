@@ -1,5 +1,5 @@
-<?php 
-	session_start(); 
+<?php
+	session_start();
 	if(date("Y/m/d H:i:s") > $_SESSION['timeout']){
 		header("location: /");
 	}
@@ -14,7 +14,7 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 </head>
 <body>
-<?php 
+<?php
 	include 'templateheader.php'
 ?>
 
@@ -39,6 +39,10 @@
 <div id="viewMyReviews">
 	<!--go to profileReviews.php-->
 	<button class="btn" onclick="window.location.href='./profileReviews.php'">View My Reviews</button>
+</div>
+<div id="addCourse">
+	<!--go to addCourse.php-->
+	<button class="btn" onclick="window.location.href='./addCourse.php'">Add A Course</button>
 </div>
 </body>
 </html>
