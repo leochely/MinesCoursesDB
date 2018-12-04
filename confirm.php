@@ -2,6 +2,7 @@
     session_start();
     include 'credentials.php';
 
+    echo $servername;
     $conn = new mysqli($servername, $username, $password, $database);
 
     if($conn -> connect_error){
@@ -20,7 +21,7 @@
 
     $getUser->execute();
     $results = $getUser->get_result();
-    
+
     if($results->num_rows > 0){
         $finalInsert = $conn->prepare("INSERT INTO users (username, pass) VALUES (?,?)");
         if($finalInsert === false){
