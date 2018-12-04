@@ -8,7 +8,7 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 </head>
 <body>
-<?php 
+<?php
 	include 'templateheader.php'
 ?>
 
@@ -37,7 +37,7 @@
 		<p>Password</p>
 		<input type="password" name="password" required>
 		<input type="submit" value="Submit" class="btn">
-	</form>	
+	</form>
 </div>
 
 <div id="forgotPassword">
@@ -49,7 +49,7 @@
 		<p>Email</p>
 		<input type="text" name="email" required>
 		<input type="submit" value="Submit" class="btn">
-	</form>	
+	</form>
 </div>
 
 </body>
