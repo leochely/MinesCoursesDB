@@ -1,5 +1,5 @@
-<?php 
-	session_start(); 
+<?php
+	session_start();
 	if(date("Y/m/d H:i:s") > $_SESSION['timeout']){
 		header("location: /");
 	}
@@ -14,7 +14,7 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 </head>
 <body>
-<?php 
+<?php
 	include 'templateheader.php'
 ?>
 
@@ -25,6 +25,11 @@
 <h3 id="signedIn">Signed in as: </h3>
 <button class="backHome" onclick="window.location.href='./profileHome.php'">Back to Home Page</button>
 <?php
+	conn = new mysqli($servername, $username, $password, $database);
+
+	if($conn -> connect_error){
+			die("Connection Failed: ". $conn->connect_error);
+	}
 
 	$search = $_POST['search'];
 
@@ -44,7 +49,7 @@
 				<tr><th class='searchHeader'>Results for (search variable) in Departments</th></tr>
 				<tr><td class='searchD'><a href='./deptPage.php'> example department</a></td></tr>
 
-			  </table>";		
+			  </table>";
 	}
 	else if ($_POST['category'] == "Search Faculty"){
 		//search faculty table for the search variable
@@ -53,7 +58,7 @@
 				<tr><th class='searchHeader'>Results for (search variable) in Faculty</th></tr>
 				<tr><td class='searchD'><a href='./profPage.php'> example professor</a></td></tr>
 
-			  </table>";		
+			  </table>";
 	}
 ?>
 

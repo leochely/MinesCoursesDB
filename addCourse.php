@@ -36,6 +36,8 @@
     <input type="text" name="department" required>
     <p>Teacher</p>
     <input type="text" name="teacher" required>
+		<p>Review</p>
+		<input type="textarea" name ="review" required>
 		<input type="submit" value="Submit" class="btn">
   </form>
 </div>
