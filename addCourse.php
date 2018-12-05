@@ -28,10 +28,8 @@
 <div id="add">
   <form method='POST' action='courseAdding.php'>
     <h3>Add a course</h3>
-		<p>ID</p>
-		<input type="text" name="id" required>
-		<p>Name</p>
-		<input type="text" name="name" required>
+		<p>Course Number</p>
+		<input type="text" name="number" required>
     <p>Department</p>
     <input type="text" name="department" required>
     <p>Teacher</p>

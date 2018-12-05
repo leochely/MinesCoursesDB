@@ -8,23 +8,23 @@
       die("Connection Failed: ". $conn->connect_error);
   }
 
-  $id = $_POST['id'];
-  $name = $_POST['name'];
+  $number = $_POST['number'];
   $department = $_POST['department'];
   $teacher = $_POST['teacher'];
   $review = $_POST['review'];
+  $user = $_SESSION['user'];
 
-  $addCourse = $conn->prepare("IF NOT EXISTS (SELECT * FROM courses WHERE id LIKE ". $id .") INSERT INTO courses (id, name, department, teacher) values(?, ?, ?, ?)");
-  if($addCourse == false){
-    die("Failed at preparing statement " . $conn->error);
+  $insert = $conn->prepare("INSERT IGNORE INTO courses (course_number, department, professor) values (?, ?, ?)");
+  if($insert === false){
+    die("Failed at preparing statement ". $conn->error);
   }
-  $addCourse->bind_param('ssss', $id, $name, $department, $teacher);
-  $addCourse->execute();
+  $insert->bind_param('iss', $number, $department, $teacher);
+  $insert->execute();
 
-  $addReview = $conn->prepare("IF EXISTS (SELECT * FROM review WHERE username LIKE " .$_SESSION['user']  . " AND id LIKE " . $id . ") INSERT INTO review (comment, username, id) values(?, ?, ?)");
-  if($addReview == false){
-    die("Failed at preparing statement " . $conn->error);
+  $courseReview = $conn->prepare("REPLACE INTO review (course_number, department, review, user) values (?, ?, ?, ?)");
+  if($courseReview === false){
+    die("Failed at preparing statement ". $conn->error);
   }
-  $addReview->bind_param('sss', $review, $_SESSION['user'], $id );
-  $addReview->execute();
+  $courseReview->bind_param('isss', $number, $department, $review, $user);
+  $courseReview->execute();
  ?>
