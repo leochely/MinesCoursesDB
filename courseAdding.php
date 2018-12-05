@@ -27,4 +27,6 @@
   }
   $courseReview->bind_param('isss', $number, $department, $review, $user);
   $courseReview->execute();
+
+  header('Location: /profileHome.php');
  ?>
