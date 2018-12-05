@@ -39,39 +39,86 @@
 		if($query === false){
 			die("Failed at preparing statement " . $conn->error);
 		}
-		
+
+		$query->bind_param( "s", $num);
+		$num = $_POST['search'];		
 		$query->execute();
 		$result = $query->get_result();
+		//$query->free();
 		if($result === false){
+			echo $result;
 			die($conn->error);
+			
 		}
-		while($row = $result->fetch_assoc()){
-			echo "<p>" . $row['department'] . ", " . $row['course_number'] . ", " . $row['professor'] . "</p>";
-		}
+		
 		echo "  <br><br>
 				<table class='searchTable'>
-				<tr><th class='searchHeader'>Results for '" . $search . "' in Courses</th></tr>
-				<tr><td class='searchD'><a href='./coursePage.php'> example course</a></td></tr>
+				<tr><th class='searchHeader'>Results for '" . $search . "' in Courses</th></tr>";
 
-			  </table>";
+		while($row = $result->fetch_assoc()){
+			echo "<tr><td class='searchD'><a href='./coursePage.php?course=" . $row['course_number'] . "'>" . $row['department'] . ", " . $row['course_number'] . ", " . $row['professor'] . "</a></td></tr>";
+		}		
+				//<tr><td class='searchD'><a href='./coursePage.php'> example course</a></td></tr>
+
+		echo "</table>";
 	}
 	else if ($_POST['category'] == "Search Departments"){
 		//search department table for the search variable
-		echo "<br><br>
-				<table class='searchTable'>
-				<tr><th class='searchHeader'>Results for '" . $search . "' in Departments</th></tr>
-				<tr><td class='searchD'><a href='./deptPage.php'> example department</a></td></tr>
+		$query = $conn->prepare("SELECT initials FROM department where initials = ?");
+		if($query === false){
+			die("Failed at preparing statement " . $conn->error);
+		}
 
-			  </table>";
+		$query->bind_param( "s", $num);
+		$num = $_POST['search'];		
+		$query->execute();
+		$result = $query->get_result();
+		//$query->free();
+		if($result === false){
+			echo $result;
+			die($conn->error);
+			
+		}
+		
+		echo "  <br><br>
+				<table class='searchTable'>
+				<tr><th class='searchHeader'>Results for '" . $search . "' in Departments</th></tr>";
+
+		while($row = $result->fetch_assoc()){
+			echo "<tr><td class='searchD'><a href='./deptPage.php?dept=" . $row['initials'] . "'>" . $row['initials'] . "</a></td></tr>";
+		}		
+				//<tr><td class='searchD'><a href='./coursePage.php'> example course</a></td></tr>
+
+		echo "</table>";
 	}
 	else if ($_POST['category'] == "Search Faculty"){
 		//search faculty table for the search variable
-		echo "<br><br>
-				<table class='searchTable'>
-				<tr><th class='searchHeader'>Results for '" . $search . "' in Faculty</th></tr>
-				<tr><td class='searchD'><a href='./profPage.php'> example professor</a></td></tr>
+		$query = $conn->prepare("SELECT professor FROM faculty where professor = ?");
+		if($query === false){
+			die("Failed at preparing statement " . $conn->error);
+		}
 
-			  </table>";
+		$query->bind_param( "s", $num);
+		$num = $_POST['search'];		
+		$query->execute();
+		$result = $query->get_result();
+		//$query->free();
+		if($result === false){
+			echo $result;
+			die($conn->error);
+			
+		}
+		
+		echo "  <br><br>
+				<table class='searchTable'>
+				<tr><th class='searchHeader'>Results for '" . $search . "' in Faculty</th></tr>";
+
+		while($row = $result->fetch_assoc()){
+			echo "<tr><td class='searchD'><a href='./profPage.php?prof=" . $row['name'] . "'>" . $row['name'] . ", " . $row['department'] . "</a></td></tr>";
+		}		
+				//<tr><td class='searchD'><a href='./coursePage.php'> example course</a></td></tr>
+
+		echo "</table>";
 	}
 ?>
 
