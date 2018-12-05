@@ -1,5 +1,5 @@
-<?php 
-	session_start(); 
+<?php
+	session_start();
 	if(date("Y/m/d H:i:s") > $_SESSION['timeout']){
 		header("location: /");
 	}
@@ -14,7 +14,7 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 </head>
 <body>
-<?php 
+<?php
 	include 'templateheader.php'
 ?>
 
@@ -34,17 +34,27 @@
 		    <th>Rating</th>
 		  </tr>
 		  <?php
-		  	//load in all reviews for this user
-		  	//outout them like this
-			  echo "<tr>
-				    <td><a href='./coursePage.php'> example name</a></td>
-				    <td>example id</td>
-				    <td><a href='./deptPage.php'> example department</a></td>	
-				    <td><a href='./profPage.php'> example professor</a></td>
-				    <td>example rating</td>
 
-				 </tr>";
+				conn = new mysqli($servername, $username, $password, $database);
 
+				if($conn -> connect_error){
+						die("Connection Failed: ". $conn->connect_error);
+				}
+
+				$query = "SELECT DISTINCT courses.name, courses.id, courses.department, courses.teacher, review.comment from review, courses WHERE courses.id = review.id AND username = " . ;
+
+				$result = mysqli_query($query);
+
+				while($row = mysql_fetch_array($result)){
+				  echo "<tr>
+					    <td><a href='./coursePage.php'> " . $row[0] . " </a></td>
+					    <td> ". $row[0] ." </td>
+					    <td><a href='./deptPage.php'> " . $row[2] . " </a></td>
+					    <td><a href='./profPage.php'> " . $row[3] . " </a></td>
+					    <td> " . $row[4] . " </td>
+
+					 </tr>";
+				 }
 			//each course, department, and professor name should be a link to their page
 			//might have the review just be a 1-5 rating and you can edit with dropdown menu
 			//looking into having a button per row that deletes the review from database
