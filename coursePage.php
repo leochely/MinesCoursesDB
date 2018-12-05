@@ -1,5 +1,5 @@
-<?php 
-	session_start(); 
+<?php
+	session_start();
 	if(date("Y/m/d H:i:s") > $_SESSION['timeout']){
 		header("location: /");
 	}
@@ -14,7 +14,7 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 </head>
 <body>
-<?php 
+<?php
 	include 'templateheader.php'
 ?>
 
@@ -25,34 +25,30 @@
 <button class="backHome" onclick="window.location.href='./profileHome.php'">Back to Home Page</button>
 
 <?php
-	//get professor id from url and search table
-	echo "<br><br>
+	conn = new mysqli($servername, $username, $password, $database);
 
-		<table class='courseTable'>
-			<tr class='courseRow'>
-				<th class='courseHeader'>Course Name</th>
-				<td>xxxxxx</td>
-			</tr>
-			<tr class='courseRow'>
-				<th class='courseHeader'>Course ID</th>
-				<td>xxxxxx</td>
-			</tr>
-			<tr class='courseRow'>
-				<th class='courseHeader'>Professor</th>
-				<td>xxxxxx</td>
-			</tr>
-			<tr class='courseRow'>
-				<th class='courseHeader'>Description</th>
-				<td>xxxxxx</td>
-			</tr>
-			<tr>
-				<th class='courseHeader'>Rating</th>
-				<td>xxxxxx</td>
-			</tr>
-		</table>";
+	if($conn -> connect_error){
+			die("Connection Failed: ". $conn->connect_error);
+	}
 
-	//probably just average ratings for the class if we stick with 1-5 scale
+	$query = "SELECT teacher FROM courses WHERE id LIKE " . $_GET['id'];
+	$teacher = mysqli_query($query);
+
+	$query = "SELECT comment FROM review WHERE id LIKE " . $_GET['id'];
+	$reviews = mysqli_query($query);
+
+	echo $_GET['id'] . " is taught by " . $teacher;
 ?>
+<table>
+	<?php
+		while($row = mysql_fetch_array($reviews)){
+			echo "<tr>
+						<td> " . $row[0] . " </td>
+					</tr>";
+		}
+	?>
+</table>";
+
 
 </body>
 </html>

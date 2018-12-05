@@ -47,10 +47,10 @@
 
 				while($row = mysql_fetch_array($result)){
 				  echo "<tr>
-					    <td><a href='./coursePage.php'> " . $row[0] . " </a></td>
-					    <td> ". $row[0] ." </td>
-					    <td><a href='./deptPage.php'> " . $row[2] . " </a></td>
-					    <td><a href='./profPage.php'> " . $row[3] . " </a></td>
+					    <td><a href='./coursePage.php?id=" . $row[1] . "'> " . $row[0] . " </a></td>
+					    <td> ". $row[1] ." </td>
+					    <td><a href='./deptPage.php?department=" . $row[2] . "'> " . $row[2] . " </a></td>
+					    <td><a href='./profPage.php?teacher=" . $row[3] . "'> " . $row[3] . " </a></td>
 					    <td> " . $row[4] . " </td>
 
 					 </tr>";

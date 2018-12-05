@@ -8,4 +8,4 @@ create table courses(id text primary key, name text, department text, teacher te
 
 create table review(comment text, username varchar(50), id text, primary key (username, course), foreign key (username) references users(username), foreign key (course) references courses(id));
 
-create table department(name text primary key);
+create table department(name text primary key, main_office text, faculty text);
