@@ -11,22 +11,22 @@
 <?php
 	include 'templateheader.php'
 ?>
-
-<div id="forgotPassword">
+<?php
+echo "
+<div id='forgotPassword'>
 	<form method='POST' action='changepass.php'>
 		<!--search user database for email, fail if no match-->
 		<!--compare passwords, fail if not identical-->
 		<!--apply cookies for user id-->
 		<!--go to profileHome-->
 		<h3>Reset your password</h3>
-		<p>Email</p>
-		<input type="text" name="username" required>
+		<input type='hidden' name='username' value = " . $_GET['email'] . " required>
 		<p>Password</p>
-		<input type="password" name="password" required>
-		<input type="submit" value="Submit" class="btn">
+		<input type='password' name='password' required>
+		<input type='submit' value='Submit' class='btn'>
 	</form>
-</div>
-
+</div>";
+?>
 
 </body>
 </html>
