@@ -55,7 +55,7 @@
 				while($row = $result->fetch_assoc()){
 
 				  echo "<tr>
-					    <td><a href='./coursePage.php?id=" . $row['course_number'] . "'> " . $row['course_number'] . " </a></td>
+					    <td><a href='./coursePage.php?course=" . $row['course_number'] . "&dept=". $row['department'] ."'> " . $row['course_number'] . " </a></td>
 					    <td> ". $row['course_number'] ." </td>
 					    <td><a href='./deptPage.php?department=" . $row['department'] . "'> " . $row['department'] . " </a></td>
 					    <td><a href='./profPage.php?teacher=" . $row['professor'] . "'> " . $row['professor'] . " </a></td>
