@@ -25,29 +25,35 @@
 <button class="backHome" onclick="window.location.href='./profileHome.php'">Back to Home Page</button>
 
 <?php
-	conn = new mysqli($servername, $username, $password, $database);
+	include 'credentials.php';
+	$conn = new mysqli($servername, $username, $password, $database);
 
 	if($conn -> connect_error){
-			die("Connection Failed: ". $conn->connect_error);
+		die("Connection Failed: ". $conn->connect_error);
 	}
+	$number = $_GET['course'];
+	$dept = $_GET['dept'];
 
-	$query = "SELECT teacher FROM courses WHERE id LIKE " . $_GET['id'];
-	$teacher = mysqli_query($query);
-
-	$query = "SELECT comment FROM review WHERE id LIKE " . $_GET['id'];
-	$reviews = mysqli_query($query);
-
-	echo $_GET['id'] . " is taught by " . $teacher;
+	$query = $conn->prepare("SELECT review, user FROM review WHERE course_number = ? AND department = ?");
+	if($query === false){
+		die("Failed at preparing statement " . $conn->error);
+	}
+	$query->bind_param("is", $number, $dept);
+	$query->execute();
+	$reviews = $query->get_result();
 ?>
+<h2>Reviews for course <?php echo $_GET['dept'] . " " . $_GET['course']; ?></h2>
 <table>
+	<tr>
+		<th>Review</th>
+		<th>User</th>
+	</tr>
 	<?php
-		while($row = mysql_fetch_array($reviews)){
-			echo "<tr>
-						<td> " . $row[0] . " </td>
-					</tr>";
+		while($row = $reviews->fetch_assoc()){
+			echo "<tr>	<td> " . $row['review'] . " </td> <td>" . $row['user']. "</td>	</tr>";
 		}
 	?>
-</table>";
+</table>
 
 
 </body>
