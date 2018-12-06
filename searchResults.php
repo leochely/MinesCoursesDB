@@ -56,9 +56,8 @@
 				<tr><th class='searchHeader'>Results for '" . $search . "' in Courses</th></tr>";
 
 		while($row = $result->fetch_assoc()){
-			echo "<tr><td class='searchD'><a href='./coursePage.php?course=" . $row['course_number'] . "&dept=". $row['department'] ."'>" . $row['department'] . ", " . $row['course_number'] . ", " . $row['professor'] . "</a></td></tr>";
-		}		
-				//<tr><td class='searchD'><a href='./coursePage.php'> example course</a></td></tr>
+			echo "<tr><td class='searchD'><a href='./coursePage.php?course=" . $row['course_number'] . "&dept=". $row['department'] ."'>" . $row['department'] . " " . $row['course_number'] . ", Professor: " . $row['professor'] . "</a></td></tr>";
+		}
 
 		echo "</table>";
 	}

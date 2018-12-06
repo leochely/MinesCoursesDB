@@ -42,7 +42,7 @@
 	$query->execute();
 	$reviews = $query->get_result();
 ?>
-<h2>Reviews for course <?php echo $_GET['dept'] . " " . $_GET['course']; ?></h2>
+<h3>Reviews for course <?php echo $_GET['dept'] . " " . $_GET['course']; ?></h3>
 <table>
 	<tr>
 		<th>Professor</th>

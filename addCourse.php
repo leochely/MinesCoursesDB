@@ -31,7 +31,28 @@
 		<p>Course Number</p>
 		<input type="text" name="number" required>
     <p>Department</p>
-    <input type="text" name="department" required>
+		<select name="department">
+			<?php
+			include 'credentials.php';
+			$conn = new mysqli($servername, $username, $password, $database);
+
+			if($conn -> connect_error){
+				die("Connection Failed: ". $conn->connect_error);
+			}
+
+			$query = "SELECT * FROM department";
+			$result = $conn->query($query);
+			if($result === false){
+				die("Failed at query " . $conn->error);
+			}
+
+			if($result->num_rows > 0){
+				while($row = $result->fetch_assoc()) {
+					echo "<option value='", $row["initials"], "'>" . $row["initials"] . "</option>";
+				}
+			}
+			?>
+		</select>
     <p>Teacher</p>
     <input type="text" name="teacher" required>
 		<p>Review</p>

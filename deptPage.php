@@ -41,7 +41,7 @@
 	$query->execute();
 	$reviews = $query->get_result();
 ?>
-<h2>Courses in Department <?php echo $_GET['course']; ?></h2>
+<h3>Courses in Department <?php echo $_GET['dept']; ?></h3>
 <table>
 	<tr>
 		<th>Course Number</th>
