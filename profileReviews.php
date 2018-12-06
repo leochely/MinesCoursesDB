@@ -22,7 +22,7 @@
 
 <!--display user email-->
 
-<h3 id="signedIn">Signed in as: </h3>
+<h3 id="signedIn">Signed in as: <?php echo $_SESSION['user']; ?> </h3>
 <button class="backHome" onclick="window.location.href='./profileHome.php'">Back to Home Page</button>
 
 <table>
@@ -34,24 +34,32 @@
 		    <th>Rating</th>
 		  </tr>
 		  <?php
-
-				conn = new mysqli($servername, $username, $password, $database);
+				include 'credentials.php';
+				$conn = new mysqli($servername, $username, $password, $database);
 
 				if($conn -> connect_error){
 						die("Connection Failed: ". $conn->connect_error);
 				}
 
-				$query = "SELECT DISTINCT courses.name, courses.id, courses.department, courses.teacher, review.comment from review, courses WHERE courses.id = review.id AND username = " . ;
+				$query = $conn->prepare("SELECT DISTINCT courses.course_number, courses.department, courses.professor, review.review from review, courses WHERE courses.course_number = review.course_number AND user = ?");
 
-				$result = mysqli_query($query);
 
-				while($row = mysql_fetch_array($result)){
+
+
+				$query->bind_param( "s", $u);
+				$u = $_SESSION['user'];	
+				$query->execute();
+				$result = $query->get_result();
+				
+				
+				while($row = $result->fetch_assoc()){
+
 				  echo "<tr>
-					    <td><a href='./coursePage.php?id=" . $row[1] . "'> " . $row[0] . " </a></td>
-					    <td> ". $row[1] ." </td>
-					    <td><a href='./deptPage.php?department=" . $row[2] . "'> " . $row[2] . " </a></td>
-					    <td><a href='./profPage.php?teacher=" . $row[3] . "'> " . $row[3] . " </a></td>
-					    <td> " . $row[4] . " </td>
+					    <td><a href='./coursePage.php?id=" . $row['course_number'] . "'> " . $row['course_number'] . " </a></td>
+					    <td> ". $row['course_number'] ." </td>
+					    <td><a href='./deptPage.php?department=" . $row['department'] . "'> " . $row['department'] . " </a></td>
+					    <td><a href='./profPage.php?teacher=" . $row['professor'] . "'> " . $row['professor'] . " </a></td>
+					    <td> " . $row['review'] . " </td>
 
 					 </tr>";
 				 }

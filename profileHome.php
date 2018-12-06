@@ -21,7 +21,7 @@
 <!--if user cookie is not correct, redirect to index.php-->
 
 <!--display user email-->
-<h3 id="signedIn">Signed in as: </h3>
+<h3 id="signedIn">Signed in as: <?php echo $_SESSION['user']; ?> </h3>
 
 
 <div id="search">
