@@ -41,13 +41,13 @@
 </div>
 
 <div id="forgotPassword">
-	<form>
+	<form method='POST' action='resetpass.php'>
 		<!--search user database for email-->
 		<!--change password to some random password-->
 		<!--send email with new random password-->
 		<h3>Forgot Password</h3>
 		<p>Email</p>
-		<input type="text" name="email" required>
+		<input type="text" name="username" required>
 		<input type="submit" value="Submit" class="btn">
 	</form>
 </div>
