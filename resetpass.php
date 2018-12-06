@@ -12,7 +12,7 @@
 	include 'templateheader.php'
 ?>
 
-<div id="resetPassword">
+<div id="forgotPassword">
 	<form method='POST' action='changepass.php'>
 		<!--search user database for email, fail if no match-->
 		<!--compare passwords, fail if not identical-->
