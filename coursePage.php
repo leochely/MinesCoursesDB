@@ -34,7 +34,7 @@
 	$number = $_GET['course'];
 	$dept = $_GET['dept'];
 
-	$query = $conn->prepare("SELECT review, user FROM review WHERE course_number = ? AND department = ?");
+	$query = $conn->prepare("SELECT professor, review, user FROM review AS r, courses AS c WHERE r.course_number = ? AND r.department = ? AND r.course_number = c.course_number AND r.department = c.department");
 	if($query === false){
 		die("Failed at preparing statement " . $conn->error);
 	}
@@ -45,12 +45,13 @@
 <h2>Reviews for course <?php echo $_GET['dept'] . " " . $_GET['course']; ?></h2>
 <table>
 	<tr>
+		<th>Professor</th>
 		<th>Review</th>
 		<th>User</th>
 	</tr>
 	<?php
 		while($row = $reviews->fetch_assoc()){
-			echo "<tr>	<td> " . $row['review'] . " </td> <td>" . $row['user']. "</td>	</tr>";
+			echo "<tr>	<td> " . $row['professor'] . " </td> <td> " . $row['review'] . " </td> <td>" . $row['user']. "</td>	</tr>";
 		}
 	?>
 </table>
