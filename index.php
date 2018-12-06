@@ -41,7 +41,7 @@
 </div>
 
 <div id="forgotPassword">
-	<form method='POST' action='resetpass.php'>
+	<form method='POST' action='resetmail.php'>
 		<!--search user database for email-->
 		<!--change password to some random password-->
 		<!--send email with new random password-->
