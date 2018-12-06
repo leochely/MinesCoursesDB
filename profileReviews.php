@@ -27,7 +27,6 @@
 
 <table>
 		  <tr>
-		    <th>Course Name</th>
 		    <th>Course ID</th>
 		    <th>Department</th>
 		    <th>Professor</th>
@@ -56,7 +55,6 @@
 
 				  echo "<tr>
 					    <td><a href='./coursePage.php?course=" . $row['course_number'] . "&dept=". $row['department'] ."'> " . $row['course_number'] . " </a></td>
-					    <td> ". $row['course_number'] ." </td>
 					    <td><a href='./deptPage.php?department=" . $row['department'] . "'> " . $row['department'] . " </a></td>
 					    <td><a href='./profPage.php?teacher=" . $row['professor'] . "'> " . $row['professor'] . " </a></td>
 					    <td> " . $row['review'] . " </td>
