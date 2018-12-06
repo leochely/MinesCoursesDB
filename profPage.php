@@ -1,5 +1,5 @@
-<?php 
-	session_start(); 
+<?php
+	session_start();
 	if(date("Y/m/d H:i:s") > $_SESSION['timeout']){
 		header("location: /");
 	}
@@ -14,43 +14,46 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 </head>
 <body>
-<?php 
+<?php
 	include 'templateheader.php'
 ?>
 
 <!--if user cookie is not correct, redirect to index.php-->
 
 <!--display user email-->
-<h3 id="signedIn">Signed in as: </h3>
+<h3 id="signedIn">Signed in as: <?php echo $_SESSION['user'] ?></h3>
 <button class="backHome" onclick="window.location.href='./profileHome.php'">Back to Home Page</button>
 
 <?php
-	//get professor id from url and search table
-	echo "<br><br>
+	include 'credentials.php';
+	$conn = new mysqli($servername, $username, $password, $database);
 
-		<table class='courseTable'>
-			<tr class='courseRow'>
-				<th class='courseHeader'>Professor</th>
-				<td>xxxxxx</td>
-			</tr>
-			<tr class='courseRow'>
-				<th class='courseHeader'>Background</th>
-				<td>xxxxxx</td>
-			</tr>
-			<tr class='courseRow'>
-				<th class='courseHeader'>Office</th>
-				<td>xxxxxx</td>
-			</tr>
-			<tr class='courseRow'>
-				<th class='courseHeader'>Office Hours</th>
-				<td>xxxxxx</td>
-			</tr>
-			<tr>
-				<th class='courseHeader'>Courses</th>
-				<td>xxxxxx</td>
-			</tr>
-		</table>";
+	if($conn -> connect_error){
+		die("Connection Failed: ". $conn->connect_error);
+	}
+	$prof = $_GET['prof'];
+
+	$query = $conn->prepare("SELECT course_number, department FROM courses WHERE professor = ?");
+	if($query === false){
+		die("Failed at preparing statement " . $conn->error);
+	}
+	$query->bind_param("s", $prof);
+	$query->execute();
+	$reviews = $query->get_result();
 ?>
+<h3>Courses taught by <?php echo $_GET['prof']; ?></h3>
+<table>
+	<tr>
+		<th>Course Number</th>
+		<th>Department</th>
+	</tr>
+	<?php
+		while($row = $reviews->fetch_assoc()){
+			echo "<tr>	<td><a href='./coursePage.php?course=" . $row['course_number'] . "&dept=". $row['department'] ."'>" . $row['course_number'] . " </a></td> <td>" . $row['department'] . "</td></tr>";
+		}
+	?>
+</table>
+
 
 </body>
 </html>

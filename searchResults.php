@@ -92,7 +92,7 @@
 	}
 	else if ($_POST['category'] == "Search Faculty"){
 		//search faculty table for the search variable
-		$query = $conn->prepare("SELECT professor FROM faculty where professor = ?");
+		$query = $conn->prepare("SELECT DISTINCT professor, department FROM courses where professor = ?");
 		if($query === false){
 			die("Failed at preparing statement " . $conn->error);
 		}
@@ -113,7 +113,7 @@
 				<tr><th class='searchHeader'>Results for '" . $search . "' in Faculty</th></tr>";
 
 		while($row = $result->fetch_assoc()){
-			echo "<tr><td class='searchD'><a href='./profPage.php?prof=" . $row['name'] . "'>" . $row['name'] . ", " . $row['department'] . "</a></td></tr>";
+			echo "<tr><td class='searchD'><a href='./profPage.php?prof=" . $row['professor'] . "'>" . $row['professor'] . ", Department: " . $row['department'] . "</a></td></tr>";
 		}		
 				//<tr><td class='searchD'><a href='./coursePage.php'> example course</a></td></tr>
 
